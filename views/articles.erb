@@ -1,0 +1,10 @@
+Articles
+<ul>
+  <% @arr_of_arrs.each do |article| %>
+  <li>
+    <h4><%= article[0] %></h4>
+    <h4><a href="<%= article[1] %>"><%= article[1] %></a></h4>
+    <h4><%= article[2] %></h4>
+  </li>
+  <% end %>
+</ul>

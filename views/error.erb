@@ -1,0 +1,23 @@
+<h4><%= @error %></h4>
+<h1>News Aggregator</h1>
+
+<p>
+  Instructions: Enter an Article Title, URL, Description, and click "Submit" to
+  post an article to News Aggregator!
+</p>
+
+<form action="/articles/new" method="post">
+  <p>
+    <label for="title">Article Title</label>
+    <input type="text" name="title" id="title" value="<%= @article_title %>">
+  </p>
+  <p>
+    <label for="url">URL</label>
+    <input type="text" name="url" id="url" value="<%= @article_url %>">
+  </p>
+  <p>
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description" value="<%= @article_description %>">
+  </p>
+  <input type="submit" value="Submit">
+</form>
