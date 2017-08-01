@@ -25,16 +25,24 @@ post '/articles/new' do
   @article_url = params[:url]
   @article_description = params[:description]
   uri = URI.parse(@article_url)
-  binding.pry
+  plagiarized = false
+  arr_of_arrs = CSV.read("articles.csv")
+  arr_of_arrs.each do |article|
+    if article[1] == @article_url
+      plagiarized = true
+    end
+  end
   if params[:title].empty? || params[:url].empty? || params[:description].empty?
     @error = "Error! Must include title, URL, and description"
     erb :error
   elsif uri.scheme != "http" && uri.scheme != "https"
     @error = "Error! URL must include http"
-    binding.pry
     erb :error
   elsif params[:description].length < 20
     @error = "Error! Description must be longer than 20 characters"
+    erb :error
+  elsif plagiarized == true
+    @error = "Error! That article has already been submitted"
     erb :error
   else
     CSV.open("articles.csv", "ab") do |csv|
