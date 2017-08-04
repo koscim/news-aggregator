@@ -12,7 +12,8 @@ get '/' do
 end
 
 get '/articles' do
-  @arr_of_arrs = CSV.read("articles.csv")
+  # @arr_of_arrs = CSV.read("articles.csv")
+  @articles = CSV.read("articles.csv", headers: true, header_converters: :symbol)
   erb :articles
 end
 
@@ -26,9 +27,9 @@ post '/articles/new' do
   @article_description = params[:description]
   uri = URI.parse(@article_url)
   plagiarized = false
-  arr_of_arrs = CSV.read("articles.csv")
-  arr_of_arrs.each do |article|
-    if article[1] == @article_url
+  articles = CSV.read("articles.csv", headers: true, header_converters: :symbol)
+  articles.each do |article|
+    if article[:url] == @article_url
       plagiarized = true
     end
   end

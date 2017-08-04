@@ -1,1 +1,9 @@
 /* CSS goes here */
+body {
+  background-color: orange;
+  font-family: Helvetica;
+}
+
+li {
+  background-color: #ffffff;
+}
